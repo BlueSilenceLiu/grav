@@ -4,9 +4,11 @@ basic code from: turtledemo.planet_and_moon
 
 * must add a mainloop() in the lastline of your code! or there will be an error from Threading!
   (haven't found the solution)
+  but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before
+  emulating end, and without mainloop(), the window will close after graphing.
   FIXME: find the solution
 """
-from turtle import Shape, Turtle, bgcolor, bgpic, mainloop, Vec2D as Vec
+from turtle import Shape, Turtle, bgcolor, bgpic, mainloop, Screen, Vec2D as Vec
 from threading import *
 
 G = 8
@@ -94,7 +96,7 @@ class Star(Turtle):
             if not GravSys.syss:
                 self.gravSys = GravSys()
             else:
-                self.gravSys = GravSys.syss[0]
+                self.gravSys = GravSys.syss[-1]
         try:
             pd = kwargs['pd']
         except KeyError:
@@ -175,7 +177,10 @@ def setup(day_color, night_color, background: tuple):
         elif value.__class__ == str:
             bgcolor(background[1])
         else:
-            raise TypeError("unavaliable type of background-value:"
+            raise TypeError("unavailable type of background-value:"
                             + value.__class__.__name__)
     elif mode == 'p':
         bgpic(value)
+
+def Window():
+    return Screen()
