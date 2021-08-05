@@ -31,3 +31,11 @@ This file if from turtledemo's file (a more general version)
 
 
 # for more information, please look at the comments.
+_Welcome to help test the module, any bugs, just edit it derectly and send the merge request.  
+Please write your change in the 'optional extended description'.  
+For example:
+title: Update
+descript: ver: x.x.x
+          what's new:......
+_
+Thank you for your download!
