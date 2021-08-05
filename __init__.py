@@ -7,6 +7,12 @@ basic code from: turtledemo.planet_and_moon
   but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before
   emulating end, and without mainloop(), the window will close after graphing.
   FIXME: find the solution
+
+  thanks for these programmer who help me test and debug:
+      -
+  author:
+      Blue S. Liu
+
 """
 from turtle import Shape, Turtle, bgcolor, bgpic, mainloop, Screen, Vec2D as Vec
 from threading import *
