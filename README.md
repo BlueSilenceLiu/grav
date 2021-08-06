@@ -11,7 +11,7 @@ Use Window() to get the Screen(a Screen() item of turtle module).
    must add a mainloop() in the lastline of your code! or there will be an error from Threading!  
    but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before  
    emulating end, and without mainloop(), the window will close after graphing.  
-## 4, Planet(m, x, v, **kwargs)  
+## 4, Star(m, x, v, **kwargs)  
 atributes
 ```
     m: mass
