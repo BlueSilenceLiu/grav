@@ -1,15 +1,18 @@
 # basic module
-This file if from turtledemo's file (a more general version)
+_This module is from turtledemo's planet_and_moon.py (but a more general version)_
 
-1, You can create the planet derectly because the GravSys is auto-created and can be created automatically.  
-2, Use Window() to get the Screen(a Screen() item of turtle module).
+## 1,
+You can create the planet derectly because the GravSys is auto-created and can be created automatically.  
+## 2,
+Use Window() to get the Screen(a Screen() item of turtle module).
 
-  _(information below are copied from file's comment)_
-3, must add a mainloop() in the lastline of your code! or there will be an error from Threading!  
+  ###### _(information below are copied from file's comment)_
+## 3, 
+   must add a mainloop() in the lastline of your code! or there will be an error from Threading!  
    but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before  
    emulating end, and without mainloop(), the window will close after graphing.  
-4, ##Planet(m, x, v, **kwargs)  
-    atributes
+## 4, Planet(m, x, v, **kwargs)  
+atributes
 ```
     m: mass
     x: initial position(a Vec2D object, or Vec as an alia we provide)  
@@ -30,16 +33,16 @@ This file if from turtledemo's file (a more general version)
             default value: True  
 ```
 
-5, ##setup()
-###Grammar
-`setup([day_color[, night_color[, background]]])`
-###Function
+## 5, setup()
+### Grammar
+`grav.setup([day_color[, night_color[, background]]])`
+### Function
 a set-up function, which must be runned before create any planet, or there would be an error.  
 It can only be ran once.
-###(The following is copied from comments)
+### (The following is copied from comments)
 ```
 background: a tuple: (mode, value)
-        mode has two available value: 'c' or 'f', if it isn't so, raise ValueError.
+          mode has two available value: 'c' or 'f', if it isn't so, raise ValueError.
           when mode is 'c', value is the color ("#XXXXXX",
                                              or "black", "white", etc.,
                                              or a (r, g, b) tuple) of background;
@@ -49,8 +52,8 @@ background: a tuple: (mode, value)
 # for more information, please look at the comments.
 _Welcome to help test the module, any bugs, just edit it derectly and send the merge request.  
 Please write your change in the 'optional extended description'.  
-For example:
-title: Update
-descript: ver: x.x.x
+For example:  
+title: Update ...  
+descript: ver: x.x.x  
           what's new:......_  
 Thank you for your download!
