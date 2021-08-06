@@ -140,7 +140,7 @@ class Star(Turtle):
         self.v = self.v + dt * self.a
 
 
-def setup(day_color, night_color, background: tuple):
+def setup(day_color="orange", night_color="black", background: tuple = ('c', "white")):
     """
     background: a tuple: (mode, value)
         mode has two available value: 'c' or 'f', if it isn't so, raise ValueError.
@@ -185,7 +185,7 @@ def setup(day_color, night_color, background: tuple):
         else:
             raise TypeError("unavailable type of background-value:"
                             + value.__class__.__name__)
-    elif mode == 'p':
+    elif mode == 'f':
         bgpic(value)
 
 def Window():
