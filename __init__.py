@@ -6,16 +6,17 @@ basic code from: turtledemo.planet_and_moon
   (haven't found the solution)
   but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before
   emulating end, and without mainloop(), the window will close after graphing.
-  FIXME: find the solution
+  TODO: find the solution
 
   thanks for these programmer who help me test and debug:
-      -
+      - 
   author:
       Blue S. Liu
 
 """
 from turtle import Shape, Turtle, bgcolor, bgpic, mainloop, Screen, Vec2D as Vec
 from threading import *
+from typing import overload
 
 G = 8
 PLANET = "planet"
@@ -36,7 +37,11 @@ class _GravSysThread(Thread):
 class GravSys(object):
     syss = []
 
-    def __init__(self, dt=0.01, turn=1000):
+    @overload
+    def __init__(self, dt: int, turn: int):
+        ...
+
+    def __init__(self, dt: float = 0.01, turn: int = 10000):
         """
         turn must be a int that greater than 0. if it is 0, it can never stop!
         """
@@ -44,8 +49,11 @@ class GravSys(object):
             self.__class__.syss.append(self)
             self.planets = []
             self.t = 0
-            self.dt = dt
-            self.turn = turn
+            self.dt = float(dt)
+            if turn == 0:
+                self.turn = ''
+            else:
+                self.turn = turn
         else:
             raise Exception("basic information haven't setup.")
 
@@ -55,10 +63,16 @@ class GravSys(object):
 
     def run(self):
         self._init()
-        for i in range(self.turn):
-            self.t += self.dt
-            for p in self.planets:
-                p.step()
+        if self.turn == '':
+            while True:
+                self.t += self.dt
+                for p in self.planets:
+                    p.step()
+        else:
+            for i in range(self.turn):
+                self.t += self.dt
+                for p in self.planets:
+                    p.step()
 
     def start(self):
         """
@@ -109,6 +123,8 @@ class Star(Turtle):
             pd = True
         if pd:
             self.pd()
+        else:
+            self.pu()
         try:
             pc = kwargs['pc']
         except KeyError:
@@ -116,7 +132,6 @@ class Star(Turtle):
         self.color(pc, pc)
         self.gravSys.planets.append(self)
         self.resizemode("user")
-        self.pendown()
 
     def init(self):
         dt = self.gravSys.dt
@@ -188,5 +203,15 @@ def setup(day_color="orange", night_color="black", background: tuple = ('c', "wh
     elif mode == 'f':
         bgpic(value)
 
+
 def Window():
     return Screen()
+
+
+if __name__ == '__main__':
+    setup()
+    sun = Star(1000000, Vec(0, 0), Vec(0, -2.5), shape=STAR, pc="yellow", pd=False)
+    earth = Star(12500, Vec(210, 0), Vec(0, 195), pc="green", pd=False)
+    moon = Star(1, Vec(220, 0), Vec(0, 295), pc="blue", pd=True)
+    sun.gravSys.run()
+    mainloop()
