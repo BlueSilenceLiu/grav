@@ -48,6 +48,30 @@ background: a tuple: (mode, value)
                                              or a (r, g, b) tuple) of background;
           when mode is 'f', value is the path of background picture (only .gif file)
 ```
+## 6, GravSys()
+a Gravity System  
+### Grammar
+`gs = GravSys([dt[, t]])`(we suggest to use gs as the name of GravSys item)  
+dt is the smallest space between two postion changes.  
+t, which is writen as turn is module, is the total turns of simutation.  
+total time = turn * dt  
+(The following are copied from comments)  
+```
+turn must be a int that greater than 0. 
+if it is 0, it can never stop!
+```
+### method
+#### gs.run()
+start the time of gravity system.  
+the method ends as soon as simulation stops.  
+#### gs.start()
+use `run()` function in another thread.
+
+## 7, \_have\_setup
+return whether it had been setuped  
+try not to use this!  
+but `is_setup()` instead!
+
 
 # for more information, please look at the comments.
 _Welcome to help test the module, any bugs, just edit it derectly and send the merge request.  
