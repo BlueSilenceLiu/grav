@@ -2,14 +2,14 @@
 """
 basic code from: turtledemo.planet_and_moon
 
-* must add a mainloop() in the lastline of your code! or there will be an error from Threading!
+* must add a mainloop() in the last line of your code! or there will be an error from Threading!
   (haven't found the solution)
   but you can use GravSys.run() instead of GravSys.start() to avoid this, the disadvantage is that you must wait before
   emulating end, and without mainloop(), the window will close after graphing.
-  TODO: find the solution
+  FIXME: find the solution
 
   thanks for these programmer who help me test and debug:
-      - 
+      -
   author:
       Blue S. Liu
 
@@ -36,10 +36,6 @@ class _GravSysThread(Thread):
 
 class GravSys(object):
     syss = []
-
-    @overload
-    def __init__(self, dt: int, turn: int):
-        ...
 
     def __init__(self, dt: float = 0.01, turn: int = 10000):
         """
@@ -83,7 +79,11 @@ class GravSys(object):
 
 
 class Star(Turtle):
-    def __init__(self, m, x: Vec, v: Vec, **kwargs: dict):
+    @overload
+    def __init__(self, m: int, x: Vec, v: Vec, **kwargs):
+        ...
+
+    def __init__(self, m: int, x: Vec, v: Vec, **kwargs: dict):
         """
         kwargs:
             gravSys: a GravSys object, the gravity system that ths star exist;
@@ -99,6 +99,7 @@ class Star(Turtle):
             pc: pencolor, effective when pd is True.
             pd: is pendown, a boolean.
                 default value: True
+            r: a float or int, the radius of planet
         """
         try:
             Turtle.__init__(self, shape=kwargs["shape"])
@@ -129,6 +130,11 @@ class Star(Turtle):
             pc = kwargs['pc']
         except KeyError:
             pc = '#FFFFFF'
+        try:
+            self.r = kwargs['r']
+        except KeyError:
+            self.r = self.pensize()
+        self.pensize(width=self.r)
         self.color(pc, pc)
         self.gravSys.planets.append(self)
         self.resizemode("user")
@@ -206,6 +212,9 @@ def setup(day_color="orange", night_color="black", background: tuple = ('c', "wh
 
 def Window():
     return Screen()
+
+def is_setup():
+    return _have_setup
 
 
 if __name__ == '__main__':
