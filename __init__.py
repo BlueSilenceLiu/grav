@@ -14,13 +14,14 @@ basic code from: turtledemo.planet_and_moon
       Blue S. Liu
 
 """
-from turtle import Shape, Turtle, bgcolor, bgpic, mainloop, Screen, Vec2D as Vec
+from turtle import Shape, Turtle, Screen, Vec2D as Vec
 from threading import *
 from typing import overload
 
 G = 8
 PLANET = "planet"
 STAR = "circle"
+mainloop = Screen().mainloop
 
 _have_setup = False
 
@@ -200,14 +201,14 @@ def setup(day_color="orange", night_color="black", background: tuple = ('c', "wh
     value = background[1]
     if mode == 'c':
         if value.__class__ == tuple:
-            bgcolor(value[0], value[1], value[2])
+            Screen().bgcolor(value[0], value[1], value[2])
         elif value.__class__ == str:
-            bgcolor(background[1])
+            Screen().bgcolor(background[1])
         else:
             raise TypeError("unavailable type of background-value:"
                             + value.__class__.__name__)
     elif mode == 'f':
-        bgpic(value)
+        Screen().bgpic(value)
 
 
 def Window():
